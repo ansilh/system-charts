@@ -142,6 +142,16 @@ add below linux tolerations to workloads could be scheduled to those linux nodes
   operator: "Equal"
 {{- end -}}
 
+{{/*
+Quick workaround to add custom tolerations to enable monitoring
+*/}}
+{{- define "my-custom-tolerations" -}}
+- key: "zone"
+  value: "private"
+  effect: "NoSchedule"
+  operator: "Equal" 
+{{- end -}}
+
 {{- define "linux-node-selector" -}}
 {{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 beta.kubernetes.io/os: linux
