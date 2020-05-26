@@ -15,6 +15,7 @@ spec:
 {{- include "linux-node-selector" . | nindent 8 }}
       tolerations:
 {{- include "linux-node-tolerations" . | nindent 8}}
+{{- include "my-custom-tolerations" . | nindent 8 }}
       serviceAccountName: {{ template "app.fullname" . }}
       securityContext:
         runAsUser: 65534
